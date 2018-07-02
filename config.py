@@ -10,4 +10,4 @@ descirption: ""
 
 import os
 
-DATA_PATH ="/home/meteo/zihao.chen/data/IEEE_ICDM_2018/download"
+DATA_PATH ="/home/meteo/zihao.chen/data/IEEE_ICDM_2018/download/test_file_001"
