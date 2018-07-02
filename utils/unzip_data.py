@@ -12,6 +12,7 @@ import os
 
 
 from config import DATA_PATH
+
 os.chdir(DATA_PATH)
 for i in range(2,11):
     os.system('mkdir train_file_%03d'%i)
