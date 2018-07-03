@@ -11,7 +11,6 @@ descirption: ""
 import datetime
 from scipy.interpolate import griddata
 import sys
-# print sys.path
 import spopt
 import os
 import cv2
@@ -155,9 +154,11 @@ class Extrapolate(object):
 
     def save_image(self):
         # 分站点存储图片
-        SAMPLE_FORMAT_STR =self._radar_code + '/%s'%(self._radar_code)
+        SAMPLE_FORMAT_STR =self._sample_code + '/%s'%(self._sample_code)
         prev_file_path = PATH_PREV_FILE_PATH + SAMPLE_FORMAT_STR
         des_path_ex_ = prev_file_path + '_f%03d.png'
+        if not os.path.exists(os.path.split(des_path_ex_)[0]):
+            os.mkdirs(os.path.split(des_path_ex_)[0])
         extra_path = []
         for i_extra in self.extra_radars:
             des_path_ = des_path_ex_ % (i_extra)
