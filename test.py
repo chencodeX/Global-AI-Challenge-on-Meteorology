@@ -13,3 +13,4 @@ from utils.flow_extrapolate import Extrapolate
 
 ep = Extrapolate()
 ep.transform('/home/meteo/zihao.chen/data/IEEE_ICDM_2018/download/test_file_001/SRAD2018_Test_1/RAD_296682434212531/RAD_296682434212531_030.png')
+print ep.data_type
