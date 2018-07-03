@@ -9,7 +9,7 @@ descirption: ""
 '''
 import os
 import shutil
-from config import *
+from config.config import *
 
 test_path = os.path.join(DATA_PATH,'SRAD2018_Test_1')
 P_path = os.path.join(DATA_PATH,'up_test')
