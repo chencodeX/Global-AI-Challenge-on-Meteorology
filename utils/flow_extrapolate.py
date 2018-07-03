@@ -125,7 +125,7 @@ class Extrapolate(object):
             self.extra_radars[0] = self._radars[0]
             radar_length = self._radars[0].shape[0]
             radar_length_ = self._radars[0].shape[1]
-            grid_x, grid_y = np.meshgrid(range(radar_length), range(radar_length_))
+            grid_x, grid_y = np.meshgrid(range(radar_length_), range(radar_length))
             # 为了不使用插值,进而加快时间
             grid_x_shift = {0: grid_x}
             grid_y_shift = {0: grid_y}
