@@ -211,7 +211,7 @@ class Extrapolate(object):
         for i_extra in self.extra_radars:
             des_path_ = des_path_ex_ % (i_extra)
             extra_path.append(des_path_)
-            self.extra_radars[i_extra] = gray_filter(self.extra_radars[i_extra], Gray_Threshold)
+            self.extra_radars[i_extra] = self.gray_filter(self.extra_radars[i_extra], Gray_Threshold)
             cv2.imwrite(des_path_, self.extra_radars[i_extra])
             print 'Write extrapolate picture:', des_path_
         return extra_path
