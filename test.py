@@ -8,9 +8,20 @@ Modify Date: 2018-07-03
 descirption: ""
 '''
 
+import os
 
 from utils.flow_extrapolate import Extrapolate
+from config.config import *
+work_list= os.listdir(PATH_TEST_FILE_PATH)
+type_count = {0:0,1:0,2:0}
 
-ep = Extrapolate()
-ep.transform('/home/meteo/zihao.chen/data/IEEE_ICDM_2018/download/test_file_001/SRAD2018_Test_1/RAD_206482434329554/RAD_206482434329554_030.png')
-print ep.data_type
+for work_name in work_list:
+    work_path = os.path.join(PATH_TEST_FILE_PATH,work_name)
+    work_file_path = os.path.join(work_path,work_name+'_030.png')
+    print work_file_path
+    ep = Extrapolate()
+    ep.transform(work_file_path)
+    print ep.data_type
+    type_count[ep.data_type]+=1
+
+print type_count
