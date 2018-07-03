@@ -75,7 +75,7 @@ class Extrapolate(object):
                 print 2
                 self.data_type = 2
                 self.error_data = img_tmp
-                return img_tmp[22:-22,6:-6]
+                return img_tmp[22:-22,22:-22]
             self.data_type = 0
             img_tmp[img_tmp == 255] = 0
             return img_tmp
@@ -85,7 +85,7 @@ class Extrapolate(object):
                 temp_data[img_tmp == 255] = 0
                 return temp_data
             if self.data_type == 2:
-                return img_tmp[22:-22, 6:-6]
+                return img_tmp[22:-22, 22:-22]
             img_tmp[img_tmp == 255] = 0
 
             return img_tmp
@@ -199,7 +199,7 @@ class Extrapolate(object):
             images[images == 0] = 255
             images = np.concatenate((images,self.error_data),axis=0)
         elif self.data_type == 2:
-            self.error_data[22:-22, 6:-6] = images
+            self.error_data[22:-22, 22:-22] = images
             return self.error_data.copy()
         else:
             images[images == 0] = 255
