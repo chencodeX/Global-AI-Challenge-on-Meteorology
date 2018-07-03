@@ -158,7 +158,7 @@ class Extrapolate(object):
         prev_file_path = PATH_PREV_FILE_PATH + SAMPLE_FORMAT_STR
         des_path_ex_ = prev_file_path + '_f%03d.png'
         if not os.path.exists(os.path.split(des_path_ex_)[0]):
-            os.mkdirs(os.path.split(des_path_ex_)[0])
+            os.makedirs(os.path.split(des_path_ex_)[0])
         extra_path = []
         for i_extra in self.extra_radars:
             des_path_ = des_path_ex_ % (i_extra)
