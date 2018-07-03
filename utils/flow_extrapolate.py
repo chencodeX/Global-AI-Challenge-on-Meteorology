@@ -18,7 +18,7 @@ import cv2
 import numpy as np
 import scipy as sy
 import matplotlib.pyplot as plt
-from config import *
+from config.config import *
 import math
 
 from math_utils import calc_direc_amp, update_center
