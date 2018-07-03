@@ -55,7 +55,7 @@ class Extrapolate(object):
     def set_radar_info(self):
         self._time_str = self._file_path[-16:-4]
         self._radar_code = os.path.split(self._file_path)[0][-6:]
-        self._sample_code = os.path.split(x)[0][-19:]
+        self._sample_code = os.path.split(self._file_path)[0][-19:]
     def _load_picture(self, time_interval=0):
         """根据图片路径加载图片"""
         _file_path = self._get_prev_file_path(time_interval)
