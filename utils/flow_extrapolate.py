@@ -73,7 +73,10 @@ class Extrapolate(object):
         """根据当前图片路径查找前_time_interval张图片的路径"""
         time_index = int(self._file_path[-7:-4])
         prev_time_index = time_index - time_index * 5
-        prev_file_path = self._file_path.replace(str(time_index),str(prev_time_index))
+        SAMPLE_FORMAT_STR =self._radar_code + '/%s'%(self._radar_code)
+        prev_file_path = PATH_PREV_FILE_PATH + SAMPLE_FORMAT_STR
+        des_path_ex_ = prev_file_path + '_%03d.png'
+        prev_file_path = des_path_ex_% prev_time_index
         return prev_file_path
 
     def _extrapolate(self, global_flow_):
@@ -153,7 +156,7 @@ class Extrapolate(object):
     def save_image(self):
         # 分站点存储图片
         SAMPLE_FORMAT_STR =self._radar_code + '/%s'%(self._radar_code)
-        prev_file_path = ImgConfig.PATH_EXTRAPOLATE + SAMPLE_FORMAT_STR
+        prev_file_path = PATH_PREV_FILE_PATH + SAMPLE_FORMAT_STR
         des_path_ex_ = prev_file_path + '_f%03d.png'
         extra_path = []
         for i_extra in self.extra_radars:
