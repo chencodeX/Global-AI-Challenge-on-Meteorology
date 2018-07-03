@@ -9,5 +9,7 @@ descirption: ""
 '''
 
 import os
-
-DATA_PATH ="/home/meteo/zihao.chen/data/IEEE_ICDM_2018/download/test_file_001"
+RADAR_TIME_INTERVAL = 360 * 5
+DATA_PATH ="/home/meteo/zihao.chen/data/IEEE_ICDM_2018/download/"
+PATH_TEST_FILE_PATH = os.path.join(DATA_PATH,'test_file_001')
+PATH_PREV_FILE_PATH = os.path.join(DATA_PATH,'extrapolate_flow')
