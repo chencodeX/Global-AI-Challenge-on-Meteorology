@@ -38,7 +38,7 @@ class Extrapolate(object):
         self._time_intervals = []
         self._so = spopt.SparseOptiflow()
         self._radars = {}
-        self._extra_num = ImgConfig.TIME_SPLICE_EXTRAPOLATE
+        self._extra_num = TIME_SPLICE_EXTRAPOLATE
         self.extra_radars = {}
         self.max_time_interval = 5
         self._max_iter = 1
