@@ -74,7 +74,7 @@ class Extrapolate(object):
         time_index = int(self._file_path[-7:-4])
         prev_time_index = time_index - time_index * 5
         SAMPLE_FORMAT_STR =self._radar_code + '/%s'%(self._radar_code)
-        prev_file_path = PATH_PREV_FILE_PATH + SAMPLE_FORMAT_STR
+        prev_file_path = PATH_TEST_FILE_PATH + SAMPLE_FORMAT_STR
         des_path_ex_ = prev_file_path + '_%03d.png'
         prev_file_path = des_path_ex_% prev_time_index
         return prev_file_path
