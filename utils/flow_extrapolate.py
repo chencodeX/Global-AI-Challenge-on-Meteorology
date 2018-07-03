@@ -71,11 +71,11 @@ class Extrapolate(object):
                 return  temp_data
             f_img_tmp = 255-img_tmp
             corp_data = f_img_tmp[21:-21]
-            print np.abs(corp_data.sum() - f_img_tmp.sum())
-            if np.abs(corp_data.sum() - f_img_tmp.sum()) < 255 * 200:
+            if np.abs(corp_data.sum()*1.0 - f_img_tmp.sum()) < (255. * 200):
+                print 2
                 self.data_type = 2
                 self.error_data = img_tmp
-                return img_tmp[22:-22,6:-6]
+                return img_tmp[22:-22,22:-22]
             self.data_type = 0
             img_tmp[img_tmp == 255] = 0
             return img_tmp
