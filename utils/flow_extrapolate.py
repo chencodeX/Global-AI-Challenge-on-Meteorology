@@ -67,6 +67,7 @@ class Extrapolate(object):
                 self.data_type = 1
                 self.error_data = img_tmp[470:]
                 temp_data = img_tmp[:470]
+                print temp_data.shape
                 temp_data[img_tmp==255]=0
                 return  temp_data
             f_img_tmp = 255-img_tmp
