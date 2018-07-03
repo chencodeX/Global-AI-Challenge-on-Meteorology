@@ -62,6 +62,7 @@ class Extrapolate(object):
     def set_data_type(self,img_tmp):
         if self.data_type is None:
             black_block = img_tmp[476:]
+            print black_block.sum()
             if black_block.sum() <=127755*2:
                 self.data_type = 1
                 self.error_data = img_tmp[470:]
@@ -70,6 +71,7 @@ class Extrapolate(object):
                 return  temp_data
             f_img_tmp = 255-img_tmp
             corp_data = f_img_tmp[21:-21]
+            print np.abs(corp_data.sum() - f_img_tmp.sum())
             if np.abs(corp_data.sum() - f_img_tmp.sum()) < 255 * 200:
                 self.data_type = 2
                 self.error_data = img_tmp
