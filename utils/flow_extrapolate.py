@@ -86,7 +86,7 @@ class Extrapolate(object):
                 temp_data[temp_data == 255] = 0
                 return temp_data
             if self.data_type == 2:
-                return img_tmp[22:-22, 22:-22]
+                return img_tmp[22:-22, 6:-6]
             img_tmp[img_tmp == 255] = 0
 
             return img_tmp
