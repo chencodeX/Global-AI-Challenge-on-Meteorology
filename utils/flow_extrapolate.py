@@ -153,6 +153,8 @@ class Extrapolate(object):
                     radar_tmp = -1 * np.ones_like(radar_base)
                     print radar_tmp.shape
                     print radar_base.shape
+                    print grid_y_shift[i_iter].shape
+                    print grid_x_shift[i_iter].shape
                     radar_tmp[grid_y_shift[i_iter], grid_x_shift[i_iter]] = radar_base
                     for width in 5 * np.ones(3, np.int):
                         kernel_ = np.ones((width, width))
