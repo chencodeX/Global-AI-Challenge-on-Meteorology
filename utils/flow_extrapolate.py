@@ -124,7 +124,8 @@ class Extrapolate(object):
             """利用全局光流场进行外推"""
             self.extra_radars[0] = self._radars[0]
             radar_length = self._radars[0].shape[0]
-            grid_x, grid_y = np.meshgrid(range(radar_length), range(radar_length))
+            radar_length_ = self._radars[0].shape[1]
+            grid_x, grid_y = np.meshgrid(range(radar_length), range(radar_length_))
             # 为了不使用插值,进而加快时间
             grid_x_shift = {0: grid_x}
             grid_y_shift = {0: grid_y}
