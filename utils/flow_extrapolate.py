@@ -44,6 +44,8 @@ class Extrapolate(object):
         # self.flow_type = 'dense'
         self.flow_type = 'sparse'
         self.local_ratio = 0.5
+        self.data_type = None
+        self.error_data = None
         # self._extra_type = 'griddata'#interpolation
         # self._extra_type = 'interpolation'#interpolation
 
@@ -55,6 +57,37 @@ class Extrapolate(object):
         self._time_str = self._file_path[-16:-4]
         self._radar_code = os.path.split(self._file_path)[0][-6:]
         self._sample_code = os.path.split(self._file_path)[0][-19:]
+
+
+    def set_data_type(self,img_tmp):
+        if self.data_type is None:
+            black_block = img_tmp[476:]
+            if black_block.sum() <=127755*2:
+                self.data_type = 1
+                self.error_data = img_tmp[470:]
+                temp_data = img_tmp[:470]
+                temp_data[img_tmp==255]=0
+                return  temp_data
+            f_img_tmp = 255-img_tmp
+            corp_data = f_img_tmp[21:-21]
+            if np.abs(corp_data.sum() - f_img_tmp.sum()) < 255 * 200:
+                self.data_type = 2
+                self.error_data = img_tmp
+                return img_tmp[22:-22,6:-6]
+            self.data_type = 0
+            img_tmp[img_tmp == 255] = 0
+            return img_tmp
+        else:
+            if self.data_type == 1:
+                temp_data = img_tmp[:470]
+                temp_data[img_tmp == 255] = 0
+                return temp_data
+            if self.data_type == 2:
+                return img_tmp[22:-22, 6:-6]
+            img_tmp[img_tmp == 255] = 0
+
+            return img_tmp
+
 
     def _load_picture(self, time_interval=0):
         """根据图片路径加载图片"""
@@ -154,6 +187,19 @@ class Extrapolate(object):
         des_path_ex = self.save_image()
         return des_path_ex
 
+    def gray_filter(self, images, threshold):
+        images[images < threshold] = 0
+        # images[images == 0] = 255
+        if self.data_type ==1:
+            images[images == 0] = 255
+            images = np.concatenate((images,self.error_data),axis=0)
+        elif self.data_type == 2:
+            self.error_data[22:-22, 6:-6] = images
+            return self.error_data.copy()
+        else:
+            images[images == 0] = 255
+            return images
+        return images
     def save_image(self):
         # 分站点存储图片
         SAMPLE_FORMAT_STR = self._sample_code + '/%s' % (self._sample_code)
@@ -244,10 +290,7 @@ def optiflow_histogram(_sparse_optflow):
     print 'Amplitude std:', np.std(_flow_direc_amp[:, :, 1])
 
 
-def gray_filter(images, threshold):
-    images[images < threshold] = 0
-    # images[images == 0] = 255
-    return images
+
 
 
 if __name__ == '__main__':
