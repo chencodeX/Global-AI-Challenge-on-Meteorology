@@ -75,7 +75,7 @@ class Extrapolate(object):
                 print 2
                 self.data_type = 2
                 self.error_data = img_tmp
-                return img_tmp[22:-22,22:-22]
+                return img_tmp[22:-22,6:-6]
             self.data_type = 0
             img_tmp[img_tmp == 255] = 0
             return img_tmp
