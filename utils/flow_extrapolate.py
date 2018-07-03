@@ -22,7 +22,7 @@ import math
 
 from math_utils import calc_direc_amp, update_center
 
-Gray_Threshold = 18
+Gray_Threshold = 0
 
 
 class Extrapolate(object):
@@ -55,6 +55,7 @@ class Extrapolate(object):
         self._time_str = self._file_path[-16:-4]
         self._radar_code = os.path.split(self._file_path)[0][-6:]
         self._sample_code = os.path.split(self._file_path)[0][-19:]
+
     def _load_picture(self, time_interval=0):
         """根据图片路径加载图片"""
         _file_path = self._get_prev_file_path(time_interval)
@@ -62,6 +63,7 @@ class Extrapolate(object):
         if os.path.isfile(_file_path):
             # 0代表读取的是灰度图像
             img_tmp = cv2.imread(_file_path, 0)
+            img_tmp = img_tmp[img_tmp == 255] = 0
             self._radars[time_interval] = img_tmp
             return True
         else:
@@ -72,10 +74,10 @@ class Extrapolate(object):
         """根据当前图片路径查找前_time_interval张图片的路径"""
         time_index = int(self._file_path[-7:-4])
         prev_time_index = time_index - _time_interval * 5
-        SAMPLE_FORMAT_STR =self._sample_code + '/%s'%(self._sample_code)
+        SAMPLE_FORMAT_STR = self._sample_code + '/%s' % (self._sample_code)
         prev_file_path = PATH_TEST_FILE_PATH + SAMPLE_FORMAT_STR
         des_path_ex_ = prev_file_path + '_%03d.png'
-        prev_file_path = des_path_ex_% prev_time_index
+        prev_file_path = des_path_ex_ % prev_time_index
         return prev_file_path
 
     def _extrapolate(self, global_flow_):
@@ -154,7 +156,7 @@ class Extrapolate(object):
 
     def save_image(self):
         # 分站点存储图片
-        SAMPLE_FORMAT_STR =self._sample_code + '/%s'%(self._sample_code)
+        SAMPLE_FORMAT_STR = self._sample_code + '/%s' % (self._sample_code)
         prev_file_path = PATH_PREV_FILE_PATH + SAMPLE_FORMAT_STR
         des_path_ex_ = prev_file_path + '_f%03d.png'
         if not os.path.exists(os.path.split(des_path_ex_)[0]):
@@ -200,7 +202,7 @@ class Extrapolate(object):
                 sparse_flow_stack = sparse_flow_stack[index_]
                 # 防止可用光流场的数目太少
                 if len(p0_stack) < 5:
-                    project_log.error('Too few sparse optiflow')
+                    print ('Too few sparse optiflow')
                     dense_flow = None
                 else:
                     global_flow_ave = sparse_flow_stack.mean(axis=0)
@@ -244,9 +246,11 @@ def optiflow_histogram(_sparse_optflow):
 
 def gray_filter(images, threshold):
     images[images < threshold] = 0
+    images[images == 0] = 255
     return images
 
 
 if __name__ == '__main__':
     ep = Extrapolate()
-    ep.transform('/home/meteo/zihao.chen/data/IEEE_ICDM_2018/download/test_file_001/SRAD2018_Test_1/RAD_296682434212531/RAD_296682434212531_030.png')
+    ep.transform(
+        '/home/meteo/zihao.chen/data/IEEE_ICDM_2018/download/test_file_001/SRAD2018_Test_1/RAD_296682434212531/RAD_296682434212531_030.png')
