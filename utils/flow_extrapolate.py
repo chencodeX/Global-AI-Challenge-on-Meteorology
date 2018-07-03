@@ -68,7 +68,7 @@ class Extrapolate(object):
                 self.error_data = img_tmp[470:]
                 temp_data = img_tmp[:470]
                 print temp_data.shape
-                temp_data[img_tmp==255]=0
+                temp_data[temp_data==255]=0
                 return  temp_data
             f_img_tmp = 255-img_tmp
             corp_data = f_img_tmp[21:-21]
@@ -151,6 +151,8 @@ class Extrapolate(object):
                     radar_base = self.extra_radars[self._max_iter * (i_cycle - 1)]
                 for i_iter in range(1, min(self._max_iter, self._extra_num - (i_cycle - 1) * self._max_iter) + 1):
                     radar_tmp = -1 * np.ones_like(radar_base)
+                    print radar_tmp.shape
+                    print radar_base.shape
                     radar_tmp[grid_y_shift[i_iter], grid_x_shift[i_iter]] = radar_base
                     for width in 5 * np.ones(3, np.int):
                         kernel_ = np.ones((width, width))
