@@ -100,6 +100,9 @@ class Extrapolate(object):
             img_tmp = cv2.imread(_file_path, 0)
             # img_tmp[img_tmp == 255] = 0
             self._radars[time_interval] = self.set_data_type(img_tmp)
+            print type(self._radars[time_interval])
+            print self._radars[time_interval].shape
+
             return True
         else:
             print 'Picture', _file_path, 'do not exits!'
