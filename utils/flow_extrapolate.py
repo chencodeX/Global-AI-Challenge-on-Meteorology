@@ -65,8 +65,8 @@ class Extrapolate(object):
             print black_block.sum()
             if black_block.sum() <=127755*2:
                 self.data_type = 1
-                self.error_data = img_tmp[470:]
-                temp_data = img_tmp[:470]
+                self.error_data = img_tmp[470:].copy()
+                temp_data = img_tmp[:470].copy()
                 print temp_data.shape
                 temp_data[temp_data==255]=0
                 return  temp_data
@@ -76,8 +76,8 @@ class Extrapolate(object):
             if black_count> 157000:
                 print 2
                 self.data_type = 2
-                self.error_data = img_tmp
-                return img_tmp[22:-22,6:-6]
+                self.error_data = img_tmp.copy()
+                return img_tmp[22:-22,6:-6].copy()
             self.data_type = 0
             img_tmp[img_tmp == 255] = 0
             return img_tmp
