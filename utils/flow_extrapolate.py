@@ -220,6 +220,7 @@ class Extrapolate(object):
         if not os.path.exists(os.path.split(des_path_ex_)[0]):
             os.makedirs(os.path.split(des_path_ex_)[0])
         extra_path = []
+        print self.extra_radars.keys()
         for i_extra in self.extra_radars:
             des_path_ = des_path_ex_ % (i_extra)
             extra_path.append(des_path_)
@@ -308,4 +309,4 @@ def optiflow_histogram(_sparse_optflow):
 if __name__ == '__main__':
     ep = Extrapolate()
     ep.transform(
-        '/home/meteo/zihao.chen/data/IEEE_ICDM_2018/download/test_file_001/SRAD2018_Test_1/RAD_296682434212531/RAD_296682434212531_030.png')
+        '/home/meteo/zihao.chen/data/IEEE_ICDM_2018/download/test_file_001/SRAD2018_Test_1/RAD_226482434222537/RAD_226482434222537_030.png')
