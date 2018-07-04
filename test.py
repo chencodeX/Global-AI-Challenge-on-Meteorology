@@ -21,21 +21,21 @@ def extrapolate_single(file_path):
     print 'data_type: %d'%ep.data_type
 
 
-all_param = []
+# all_param = []
+#
+#
+# for work_name in work_list:
+#     work_path = os.path.join(PATH_TEST_FILE_PATH,work_name)
+#     work_file_path = os.path.join(work_path,work_name+'_030.png')
+#     print work_file_path
+#     all_param.append(work_file_path)
+#
+#     # type_count[ep.data_type]+=1
+# pool = multiprocessing.Pool(14)
+#
+# pool.map(extrapolate_single, all_param)
+# pool.close()
+# pool.join()
+# print type_count
 
-
-for work_name in work_list:
-    work_path = os.path.join(PATH_TEST_FILE_PATH,work_name)
-    work_file_path = os.path.join(work_path,work_name+'_030.png')
-    print work_file_path
-    all_param.append(work_file_path)
-
-    # type_count[ep.data_type]+=1
-pool = multiprocessing.Pool(14)
-
-pool.map(extrapolate_single, all_param)
-pool.close()
-pool.join()
-print type_count
-
-# extrapolate_single('/home/meteo/zihao.chen/data/IEEE_ICDM_2018/download/test_file_001/SRAD2018_Test_1/RAD_226482434222537/RAD_226482434222537_030.png')
+extrapolate_single('/home/meteo/zihao.chen/data/IEEE_ICDM_2018/download/test_file_001/SRAD2018_Test_1/RAD_516482464219551/RAD_516482464219551_030.png')
