@@ -61,7 +61,7 @@ class Extrapolate(object):
 
     def set_data_type(self,img_tmp):
         if self.data_type is None:
-            black_block = img_tmp[476:]
+            black_block = img_tmp[476:].copy()
             print black_block.sum()
             if black_block.sum() <=127755*2:
                 self.data_type = 1
@@ -70,9 +70,10 @@ class Extrapolate(object):
                 print temp_data.shape
                 temp_data[temp_data==255]=0
                 return  temp_data
-            f_img_tmp = 255-img_tmp
-            corp_data = f_img_tmp[21:-21]
-            if np.abs(corp_data.sum()*1.0 - f_img_tmp.sum()) < (255. * 200):
+            f_img_tmp = img_tmp.copy()
+            corp_data = f_img_tmp[21:-21,6:-6]
+            black_count = corp_data[corp_data==0].shape[0]
+            if black_count> 157000:
                 print 2
                 self.data_type = 2
                 self.error_data = img_tmp
