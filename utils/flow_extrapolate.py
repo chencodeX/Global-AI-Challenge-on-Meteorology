@@ -170,8 +170,7 @@ class Extrapolate(object):
                     self.extra_radars[(i_cycle - 1) * self._max_iter + i_iter] = radar_tmp
         else:
             # 如果缺图导致无法计算光流，或者本时次就是空白图，则用不动法外推
-            for i_extra in range(self._extra_num):
-                print 'ddddddddddddddddddddd'
+            for i_extra in range(self._extra_num+1):
                 self.extra_radars[i_extra] = self._radars[0]
 
     def transform(self, _src_path, time_interval=360):
@@ -193,10 +192,8 @@ class Extrapolate(object):
             if len(self._time_intervals) >= 2:
                 global_flow = self._calc_global_flow()
             else:
-                print 'loss pic'
                 global_flow = None
         else:
-            print 'loss pix'
             global_flow = None
         self._extrapolate(global_flow)
         des_path_ex = self.save_image()
