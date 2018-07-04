@@ -193,8 +193,10 @@ class Extrapolate(object):
             if len(self._time_intervals) >= 2:
                 global_flow = self._calc_global_flow()
             else:
+                print 'loss pic'
                 global_flow = None
         else:
+            print 'loss pix'
             global_flow = None
         self._extrapolate(global_flow)
         des_path_ex = self.save_image()
