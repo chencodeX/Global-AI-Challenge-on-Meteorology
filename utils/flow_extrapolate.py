@@ -264,7 +264,7 @@ class Extrapolate(object):
                 sparse_flow_stack = sparse_flow_stack[index_]
                 # 防止可用光流场的数目太少
                 if len(p0_stack) < 5:
-                    print ('Too few sparse optiflow')
+                    print ('Too few sparse optiflow: %d'%(len(p0_stack)))
                     dense_flow = None
                 else:
                     global_flow_ave = sparse_flow_stack.mean(axis=0)
