@@ -18,7 +18,7 @@ type_count = {0:0,1:0,2:0}
 def extrapolate_single(file_path):
     ep = Extrapolate()
     ep.transform(file_path)
-    print ep.data_type
+    print 'data_type: %d'%ep.data_type
 
 
 all_param = []
