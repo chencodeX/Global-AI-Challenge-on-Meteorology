@@ -171,6 +171,7 @@ class Extrapolate(object):
         else:
             # 如果缺图导致无法计算光流，或者本时次就是空白图，则用不动法外推
             for i_extra in range(self._extra_num):
+                print 'ddddddddddddddddddddd'
                 self.extra_radars[i_extra] = self._radars[0]
 
     def transform(self, _src_path, time_interval=360):
