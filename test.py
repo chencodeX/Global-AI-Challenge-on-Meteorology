@@ -19,8 +19,10 @@ def extrapolate_single(file_path):
     ep = Extrapolate()
     ep.transform(file_path)
     print 'data_type: %d'%ep.data_type
-
-
+    old_path = os.path.split(file_path)[0]
+    new_path = old_path.replace('SRAD2018_Test_1','SRAD2018_Test_1_%d'%ep.data_type)
+    os.makedirs(new_path)
+    os.system('cp -r %s/* %s'%(old_path,new_path))
 # all_param = []
 #
 #
