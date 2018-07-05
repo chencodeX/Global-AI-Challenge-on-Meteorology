@@ -16,6 +16,7 @@ work_list= os.listdir(PATH_TEST_FILE_PATH)
 type_count = {0:0,1:0,2:0}
 
 def extrapolate_single(file_path):
+    print work_file_path
     ep = Extrapolate()
     ep.transform(file_path)
     print 'data_type: %d'%ep.data_type
@@ -29,7 +30,7 @@ all_param = []
 for work_name in work_list:
     work_path = os.path.join(PATH_TEST_FILE_PATH,work_name)
     work_file_path = os.path.join(work_path,work_name+'_030.png')
-    print work_file_path
+
     all_param.append(work_file_path)
 
     # type_count[ep.data_type]+=1
