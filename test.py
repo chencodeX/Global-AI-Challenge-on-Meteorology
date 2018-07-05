@@ -18,7 +18,11 @@ type_count = {0:0,1:0,2:0}
 def extrapolate_single(file_path):
     print work_file_path
     ep = Extrapolate()
-    ep.transform(file_path)
+    try:
+        ep.transform(file_path)
+    except Exception as e:
+        print 'error : ',e.message
+        print 'error path :',work_file_path
     print 'data_type: %d'%ep.data_type
     # old_path = os.path.split(file_path)[0]
     # new_path = old_path.replace('SRAD2018_Test_1','SRAD2018_Test_1_%d'%ep.data_type)
