@@ -20,6 +20,7 @@ for sample in samples:
     temp_last_image_path = os.path.join(temp_data_path,sample+'_f005.png')
     if os.path.exists(temp_last_image_path):
         up_load_data_path = temp_data_path.replace('extrapolate_flow','extrapolate_flow_merge')
-        os.makedirs(up_load_data_path)
-        save_path = os.path.join(up_load_data_path,sample+'_f00%d.png'%(5))
+        if not os.path.exists(up_load_data_path):
+            os.makedirs(up_load_data_path)
+        save_path = os.path.join(up_load_data_path,sample+'_f00%d.png'%(4))
         shutil.copy(temp_last_image_path,save_path)
