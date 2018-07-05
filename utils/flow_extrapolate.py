@@ -39,7 +39,7 @@ class Extrapolate(object):
         self._radars = {}
         self._extra_num = TIME_RADAR_EXTRAPOLATE
         self.extra_radars = {}
-        self.max_time_interval = 6
+        self.max_time_interval = 7
         self._max_iter = 1
         # self.flow_type = 'dense'
         self.flow_type = 'sparse'
@@ -113,7 +113,7 @@ class Extrapolate(object):
     def _get_prev_file_path(self, _time_interval):
         """根据当前图片路径查找前_time_interval张图片的路径"""
         time_index = int(self._file_path[-7:-4])
-        prev_time_index = time_index - _time_interval * 5
+        prev_time_index = time_index - _time_interval * 4
         SAMPLE_FORMAT_STR = self._sample_code + '/%s' % (self._sample_code)
         prev_file_path = PATH_TEST_FILE_PATH + SAMPLE_FORMAT_STR
         des_path_ex_ = prev_file_path + '_%03d.png'
