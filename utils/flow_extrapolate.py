@@ -39,7 +39,7 @@ class Extrapolate(object):
         self._radars = {}
         self._extra_num = TIME_RADAR_EXTRAPOLATE
         self.extra_radars = {}
-        self.max_time_interval = 5
+        self.max_time_interval = 6
         self._max_iter = 1
         # self.flow_type = 'dense'
         self.flow_type = 'sparse'
@@ -178,7 +178,6 @@ class Extrapolate(object):
         self.set_radar_info()
         print self._load_picture(0)
         print self._radars.keys()
-        return None
         # 保证图片像素点不会太少
         if self._radars[0].sum() > 100:
             # 尝试装载self.max_time_interval*6分钟内最近的一张图片
